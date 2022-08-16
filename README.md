@@ -1,4 +1,5 @@
-# SCP - Chaos in Containment (a Containment Breach mod)
+# SCP - Chaos in Containment
+(a Containment Breach mod)
 
 The game is based on the works of the SCP Foundation community (http://www.scp-wiki.net/).
 
