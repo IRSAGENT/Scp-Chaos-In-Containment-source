@@ -26,7 +26,7 @@ Type ItemTemplates
 	Field scale#
 	;Field bumptex%
 	Field tex%, texpath$
-End Type  
+End Type
 
 Function CreateItemTemplate.ItemTemplates(name$, tempname$, objpath$, invimgpath$, imgpath$, scale#, texturepath$ = "",invimgpath2$="",Anim%=0, texflags%=9)
 	Local it.ItemTemplates = New ItemTemplates, n
@@ -696,8 +696,7 @@ Function PickItem(item.Items)
 						Else
 							;TakeOffStuff(1+16)
 							SelectedItem = item	
-												
-							EndIf
+						EndIf
 							
 					Case "vest","finevest"
 						canpickitem = True
