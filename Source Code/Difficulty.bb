@@ -17,11 +17,11 @@ Dim difficulties.Difficulty(4)
 
 Global SelectedDifficulty.Difficulty
 
-Const SAFE=0, EUCLID=1, KETER=2, CUSTOM=3
+Const SAFE=0, EUCLID=1, KETER=2, Apollyon=3, Custom = 4
 
 Const SAVEANYWHERE = 0, SAVEONQUIT=1, SAVEONSCREENS=2
 
-Const EASY = 0, NORMAL = 1, HARD = 2
+Const EASY = 0, NORMAL = 1, HARD = 3
 
 difficulties(SAFE) = New Difficulty
 difficulties(SAFE)\name = "Safe"
@@ -58,6 +58,18 @@ difficulties(KETER)\r = 200
 difficulties(KETER)\g = 0
 difficulties(KETER)\b = 0
 
+difficulties(Apollyon) = New Difficulty
+difficulties(Apollyon)\name = "Apollyon"
+difficulties(Apollyon)\description = "What are Apollyon SCPs? Apollyon is a containment class denoting a specific subset of SCPs, namely those who are impossible to contain or who will break irrevocably break containment. "
+difficulties(Apollyon)\description = difficulties(Apollyon)\description +"The same can be said for this difficulty level: the SCPs are more aggressive, And you only have 2 Inventory spaces, 1 life once you die. game. over. "
+difficulties(Apollyon)\permaDeath = True
+difficulties(Apollyon)\aggressiveNPCs = True
+difficulties(Apollyon)\saveType = SAVEONQUIT
+difficulties(Apollyon)\otherFactors = HARD
+difficulties(Apollyon)\r = 19
+difficulties(Apollyon)\g = 104
+difficulties(Apollyon)\b = 255
+
 difficulties(CUSTOM) = New Difficulty
 difficulties(CUSTOM)\name = "Custom"
 difficulties(CUSTOM)\permaDeath = False
@@ -69,7 +81,7 @@ difficulties(CUSTOM)\r = 255
 difficulties(CUSTOM)\g = 255
 difficulties(CUSTOM)\b = 255
 
-SelectedDifficulty = difficulties(SAFE)
+SelectedDifficulty = difficulties(Normal)
 ;~IDEal Editor Parameters:
 ;~F#0
 ;~C#Blitz3D

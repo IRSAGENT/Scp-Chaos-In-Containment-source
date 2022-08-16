@@ -1,6 +1,6 @@
 Global BurntNote%
 
-Const MaxItemAmount% = 10
+Const MaxItemAmount% = 4
 Global ItemAmount%
 Dim Inventory.Items(MaxItemAmount + 1)
 Global InvSelect%, SelectedItem.Items
@@ -26,7 +26,7 @@ Type ItemTemplates
 	Field scale#
 	;Field bumptex%
 	Field tex%, texpath$
-End Type 
+End Type  
 
 Function CreateItemTemplate.ItemTemplates(name$, tempname$, objpath$, invimgpath$, imgpath$, scale#, texturepath$ = "",invimgpath2$="",Anim%=0, texflags%=9)
 	Local it.ItemTemplates = New ItemTemplates, n
@@ -126,6 +126,12 @@ Function InitItemTemplates()
 	CreateItemTemplate("Playing Card", "misc", "GFX\items\keycard.x", "GFX\items\INVcard.jpg", "", 0.0004,"GFX\items\card.jpg")
 	CreateItemTemplate("Mastercard", "misc", "GFX\items\keycard.x", "GFX\items\INVmastercard.jpg", "", 0.0004,"GFX\items\mastercard.jpg")
 	CreateItemTemplate("Key Card Omni", "key6", "GFX\items\keycard.x", "GFX\items\INVkeyomni.jpg", "", 0.0004,"GFX\items\keycardomni.jpg")
+	CreateItemTemplate("SCP-005", "SCP005",  "GFX\items\scp_005.b3d", "GFX\items\INV_scp_005.PNG", "", 0.0004,"GFX\items\scp_005.PNG")
+	CreateItemTemplate("Keyboard", "A Snack that smiles back gold fish",  "GFX\items\keyboard.x", "GFX\items\keyboard.png", "", 0.0060,"GFX\map\Props\keyboard.jpg")
+	CreateItemTemplate("Glass Shard", "Glass shard",  "GFX\items\Glass shard.b3d", "GFX\items\Glass_Shard_INV.png", "", 0.0004,"GFX\map\mat_glass.png")
+
+
+	
 	
 	it = CreateItemTemplate("SCP-860", "scp860", "GFX\items\key.b3d", "GFX\items\INVkey.jpg", "", 0.001)
 	it\sound = 3
@@ -689,8 +695,10 @@ Function PickItem(item.Items)
 							Return
 						Else
 							;TakeOffStuff(1+16)
-							SelectedItem = item
-						EndIf
+							SelectedItem = item	
+												
+							EndIf
+							
 					Case "vest","finevest"
 						canpickitem = True
 						For z% = 0 To MaxItemAmount - 1
@@ -717,6 +725,17 @@ Function PickItem(item.Items)
 							;TakeOffStuff(2)
 							SelectedItem = item
 						EndIf
+						
+						Case "Glass shard"	
+							Injuries = Injuries + 1.1
+                        	Bloodloss = Bloodloss + 15
+							Msg = "You cut your hand while picking up the glass shard."
+							MsgTimer = 70 * 8
+							BlurTimer = 1000	
+							PlaySound_Strict(LoadTempSound("SFX\General\Slash2.ogg"))
+							DropItem(item)
+									Exit
+			
 				End Select
 				
 				If item\itemtemplate\sound <> 66 Then PlaySound_Strict(PickSFX(item\itemtemplate\sound))
@@ -732,7 +751,7 @@ Function PickItem(item.Items)
 			EndIf
 		Next
 	Else
-		Msg = "You cannot carry any more items."
+		Msg = "Your pockets are full."
 		MsgTimer = 70 * 5
 	EndIf
 	CatchErrors("PickItem")

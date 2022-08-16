@@ -27,8 +27,18 @@ Global MenuStr$, MenuStrX%, MenuStrY%
 
 Global MainMenuTab%
 
+Global SelectedChapter% = CHAPTER1
 
-Global IntroEnabled% = GetINIInt(OptionFile, "options", "intro enabled")
+Const CHAPTER1=0, CHAPTER2=1, CHAPTER3=2, CHAPTER4=3, CHAPTER5=4, CHAPTER6=5, CHAPTER7=6
+
+Dim ChapterNames$(7)
+ChapterNames(CHAPTER1)="Arrival"
+ChapterNames(CHAPTER2)="The breach"
+ChapterNames(CHAPTER3)="Dangerous anomalies"
+ChapterNames(CHAPTER4)="The sewers"
+ChapterNames(CHAPTER5)="Heavy containment"
+ChapterNames(CHAPTER6)="Deeper down"
+ChapterNames(CHAPTER7)="The end is nigh"
 
 Global SelectedInputBox%
 
@@ -234,7 +244,6 @@ Function UpdateMainMenu()
 		If DrawButton(x + width + 20 * MenuScale, y, 580 * MenuScale - width - 20 * MenuScale, height, "BACK", False) Then 
 			Select MainMenuTab
 				Case 1
-					PutINIValue(OptionFile, "options", "intro enabled", IntroEnabled%)
 					MainMenuTab = 0
 				Case 2
 					CurrLoadGamePage = 0
@@ -273,7 +282,7 @@ Function UpdateMainMenu()
 				x = 160 * MenuScale
 				y = y + height + 20 * MenuScale
 				width = 580 * MenuScale
-				height = 330 * MenuScale
+				height = 450 * MenuScale
 				
 				DrawFrame(x, y, width, height)				
 				
@@ -316,40 +325,43 @@ Function UpdateMainMenu()
 					EndIf
 				EndIf	
 				
-				AAText(x + 20 * MenuScale, y + 110 * MenuScale, "Enable intro sequence:")
-				IntroEnabled = DrawTick(x + 280 * MenuScale, y + 110 * MenuScale, IntroEnabled)	
+				AAText(x + 20 * MenuScale, y + 110 * MenuScale, "Chapter selection:")
+				For i = CHAPTER1 To CHAPTER7
+					If DrawTick(x + (20+260*(i Mod 2)) * MenuScale, y + (140+30*(i/2)) * MenuScale, (SelectedChapter = i)) Then SelectedChapter = i
+					AAText(x + (60+260*(i Mod 2)) * MenuScale, y + (140+30*(i/2)) * MenuScale, ChapterNames(i))
+				Next
 				
 				;Local modeName$, modeDescription$, selectedDescription$
-				AAText (x + 20 * MenuScale, y + 150 * MenuScale, "Difficulty:")				
+				AAText (x + 20 * MenuScale, y + 270 * MenuScale, "Difficulty:")				
 				For i = SAFE To CUSTOM
-					If DrawTick(x + 20 * MenuScale, y + (180+30*i) * MenuScale, (SelectedDifficulty = difficulties(i))) Then SelectedDifficulty = difficulties(i)
+					If DrawTick(x + 20 * MenuScale, y + (300+30*i) * MenuScale, (SelectedDifficulty = difficulties(i))) Then SelectedDifficulty = difficulties(i)
 					Color(difficulties(i)\r,difficulties(i)\g,difficulties(i)\b)
-					AAText(x + 60 * MenuScale, y + (180+30*i) * MenuScale, difficulties(i)\name)
+					AAText(x + 60 * MenuScale, y + (300+30*i) * MenuScale, difficulties(i)\name)
 				Next
 				
 				Color(255, 255, 255)
-				DrawFrame(x + 150 * MenuScale,y + 155 * MenuScale, 410*MenuScale, 150*MenuScale)
+				DrawFrame(x + 150 * MenuScale,y + 275 * MenuScale, 410*MenuScale, 150*MenuScale)
 				
 				If SelectedDifficulty\customizable Then
-					SelectedDifficulty\permaDeath =  DrawTick(x + 160 * MenuScale, y + 165 * MenuScale, (SelectedDifficulty\permaDeath))
-					AAText(x + 200 * MenuScale, y + 165 * MenuScale, "Permadeath")
+					SelectedDifficulty\permaDeath =  DrawTick(x + 160 * MenuScale, y + 285 * MenuScale, (SelectedDifficulty\permaDeath))
+					AAText(x + 200 * MenuScale, y + 285 * MenuScale, "Permadeath")
 					
-					If DrawTick(x + 160 * MenuScale, y + 195 * MenuScale, SelectedDifficulty\saveType = SAVEANYWHERE And (Not SelectedDifficulty\permaDeath), SelectedDifficulty\permaDeath) Then 
+					If DrawTick(x + 160 * MenuScale, y + 315 * MenuScale, SelectedDifficulty\saveType = SAVEANYWHERE And (Not SelectedDifficulty\permaDeath), SelectedDifficulty\permaDeath) Then 
 						SelectedDifficulty\saveType = SAVEANYWHERE
 					Else
 						SelectedDifficulty\saveType = SAVEONSCREENS
 					EndIf
 					
-					AAText(x + 200 * MenuScale, y + 195 * MenuScale, "Save anywhere")	
+					AAText(x + 200 * MenuScale, y + 315 * MenuScale, "Save anywhere")	
 					
-					SelectedDifficulty\aggressiveNPCs =  DrawTick(x + 160 * MenuScale, y + 225 * MenuScale, SelectedDifficulty\aggressiveNPCs)
-					AAText(x + 200 * MenuScale, y + 225 * MenuScale, "Aggressive NPCs")
+					SelectedDifficulty\aggressiveNPCs =  DrawTick(x + 160 * MenuScale, y + 345 * MenuScale, SelectedDifficulty\aggressiveNPCs)
+					AAText(x + 200 * MenuScale, y + 345 * MenuScale, "Aggressive NPCs")
 					
 					;Other factor's difficulty
 					Color 255,255,255
-					DrawImage ArrowIMG(1),x + 155 * MenuScale, y+251*MenuScale
+					DrawImage ArrowIMG(1),x + 155 * MenuScale, y+371*MenuScale
 					If MouseHit1
-						If ImageRectOverlap(ArrowIMG(1),x + 155 * MenuScale, y+251*MenuScale, ScaledMouseX(),ScaledMouseY(),0,0)
+						If ImageRectOverlap(ArrowIMG(1),x + 155 * MenuScale, y+371*MenuScale, ScaledMouseX(),ScaledMouseY(),0,0)
 							If SelectedDifficulty\otherFactors < HARD
 								SelectedDifficulty\otherFactors = SelectedDifficulty\otherFactors + 1
 							Else
@@ -361,14 +373,14 @@ Function UpdateMainMenu()
 					Color 255,255,255
 					Select SelectedDifficulty\otherFactors
 						Case EASY
-							AAText(x + 200 * MenuScale, y + 255 * MenuScale, "Other difficulty factors: Easy")
+							AAText(x + 200 * MenuScale, y + 375 * MenuScale, "Other difficulty factors: Easy")
 						Case NORMAL
-							AAText(x + 200 * MenuScale, y + 255 * MenuScale, "Other difficulty factors: Normal")
+							AAText(x + 200 * MenuScale, y + 375 * MenuScale, "Other difficulty factors: Normal")
 						Case HARD
-							AAText(x + 200 * MenuScale, y + 255 * MenuScale, "Other difficulty factors: Hard")
+							AAText(x + 200 * MenuScale, y + 375 * MenuScale, "Other difficulty factors: Hard")
 					End Select
 				Else
-					RowText(SelectedDifficulty\description, x+160*MenuScale, y+160*MenuScale, (410-20)*MenuScale, 200)					
+					RowText(SelectedDifficulty\description, x+160*MenuScale, y+280*MenuScale, (410-20)*MenuScale, 200)					
 				EndIf
 				
 				If DrawButton(x, y + height + 20 * MenuScale, 160 * MenuScale, 70 * MenuScale, "Load map", False) Then
@@ -401,9 +413,6 @@ Function UpdateMainMenu()
 					MainMenuOpen = False
 					FlushKeys()
 					FlushMouse()
-					
-					PutINIValue(OptionFile, "options", "intro enabled", IntroEnabled%)
-					
 				EndIf
 				
 				;[End Block]
