@@ -128,7 +128,7 @@ Function InitItemTemplates()
 	CreateItemTemplate("Key Card Omni", "key6", "GFX\items\keycard.x", "GFX\items\INVkeyomni.jpg", "", 0.0004,"GFX\items\keycardomni.jpg")
 	CreateItemTemplate("SCP-005", "SCP005",  "GFX\items\scp_005.b3d", "GFX\items\INV_scp_005.PNG", "", 0.0004,"GFX\items\scp_005.PNG")
 	CreateItemTemplate("Keyboard", "keyboard",  "GFX\items\keyboard.x", "GFX\items\INVkeyboard.png", "", 0.0060,"GFX\map\Props\keyboard.jpg")
-	CreateItemTemplate("Glass Shard", "glassshard",  "GFX\items\Glass shard.b3d", "GFX\items\INVglassshard.png", "", 0.0004,"GFX\map\mat_glass.png")
+	CreateItemTemplate("Glass Shard", "glassshard",  "GFX\items\glassshard.b3d", "GFX\items\INVglassshard.png", "", 0.0004,"GFX\map\mat_glass.png")
 
 
 	
