@@ -17,7 +17,7 @@ Dim difficulties.Difficulty(4)
 
 Global SelectedDifficulty.Difficulty
 
-Const SAFE=0, EUCLID=1, KETER=2, Apollyon=3, Custom = 4
+Const SAFE=0, EUCLID=1, KETER=2, APOLLYON=3, Custom = 4
 
 Const SAVEANYWHERE = 0, SAVEONQUIT=1, SAVEONSCREENS=2
 
@@ -58,17 +58,17 @@ difficulties(KETER)\r = 200
 difficulties(KETER)\g = 0
 difficulties(KETER)\b = 0
 
-difficulties(Apollyon) = New Difficulty
-difficulties(Apollyon)\name = "Apollyon"
-difficulties(Apollyon)\description = "What are Apollyon SCPs? Apollyon SCPs are uncontainable and will breach immediately. "
-difficulties(Apollyon)\description = difficulties(Apollyon)\description +"The same can be said for this difficulty level: The SCPs are extremly aggressive and you only have 2 inventory slots. You have 1 life, after you die it's 'Game Over'. "
-difficulties(Apollyon)\permaDeath = True
-difficulties(Apollyon)\aggressiveNPCs = True
-difficulties(Apollyon)\saveType = SAVEONQUIT
-difficulties(Apollyon)\otherFactors = HARD
-difficulties(Apollyon)\r = 28
-difficulties(Apollyon)\g = 28
-difficulties(Apollyon)\b = 28
+difficulties(APOLLYON) = New Difficulty
+difficulties(APOLLYON)\name = "Apollyon"
+difficulties(APOLLYON)\description = "What are Apollyon SCPs? Apollyon SCPs are uncontainable and will breach immediately. "
+difficulties(APOLLYON)\description = difficulties(Apollyon)\description +"The same can be said for this difficulty level: The SCPs are extremly aggressive and you only have 2 inventory slots. You have 1 life, after you die it's 'Game Over'. "
+difficulties(APOLLYON)\permaDeath = True
+difficulties(APOLLYON)\aggressiveNPCs = True
+difficulties(APOLLYON)\saveType = SAVEONQUIT
+difficulties(APOLLYON)\otherFactors = HARD
+difficulties(APOLLYON)\r = 28
+difficulties(APOLLYON)\g = 28
+difficulties(APOLLYON)\b = 28
 
 difficulties(CUSTOM) = New Difficulty
 difficulties(CUSTOM)\name = "Custom"
