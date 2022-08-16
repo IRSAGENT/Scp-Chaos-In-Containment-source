@@ -725,15 +725,15 @@ Function PickItem(item.Items)
 							SelectedItem = item
 						EndIf
 						
-						Case "Glass shard"	
-							Injuries = Injuries + 1.1
-                        	Bloodloss = Bloodloss + 15
-							Msg = "You cut your hand while picking up the glass shard."
-							MsgTimer = 70 * 8
-							BlurTimer = 1000	
-							PlaySound_Strict(LoadTempSound("SFX\General\Slash2.ogg"))
-							DropItem(item)
-									Exit
+					Case "glassshard"	
+						Injuries = Injuries + 1.1
+                        Bloodloss = Bloodloss + 15
+						Msg = "You cut your hand while picking up the glass shard."
+						MsgTimer = 70 * 8
+						BlurTimer = 1000	
+						PlaySound_Strict(LoadTempSound("SFX\General\Slash2.ogg"))
+						DropItem(item)
+								Exit
 			
 				End Select
 				
