@@ -32,20 +32,20 @@ Global SelectedChapter% = CHAPTER1
 Const CHAPTER1=0, CHAPTER2=1, CHAPTER3=2, CHAPTER4=3, CHAPTER5=4, CHAPTER6=5, CHAPTER7=6
 
 Dim ChapterNames$(7)
-ChapterNames(CHAPTER1)="Arrival"
-ChapterNames(CHAPTER2)="The breach"
-ChapterNames(CHAPTER3)="Dangerous anomalies"
-ChapterNames(CHAPTER4)="The sewers"
-ChapterNames(CHAPTER5)="Heavy containment"
-ChapterNames(CHAPTER6)="Deeper down"
-ChapterNames(CHAPTER7)="The end is nigh"
+ChapterNames(CHAPTER1)="CH1-Arrival"
+ChapterNames(CHAPTER2)="CH2-The breach"
+ChapterNames(CHAPTER3)="CH3-Dangerous anomalies"
+ChapterNames(CHAPTER4)="CH4-The sewers"
+ChapterNames(CHAPTER5)="CH5-Heavy containment"
+ChapterNames(CHAPTER6)="CH6-Deeper down"
+ChapterNames(CHAPTER7)="CH7-The end is nigh"
 
 Global SelectedInputBox%
 
 Global SavePath$ = "Saves\"
 Global SaveMSG$
 
-;nykyisen tallennuksen nimi ja samalla missä kansiossa tallennustiedosto sijaitsee saves-kansiossa
+;nykyisen tallennuksen nimi ja samalla missÃ¤ kansiossa tallennustiedosto sijaitsee saves-kansiossa
 Global CurrSave$
 
 Global SaveGameAmount%
@@ -113,7 +113,7 @@ Function UpdateMainMenu()
 				Case 15
 					MenuStr = "Stone does not care"
 				Case 16
-					MenuStr = "9341"
+					MenuStr = "Hello robert..."
 				Case 17
 					MenuStr = "It controls the doors"
 				Case 18
@@ -124,6 +124,10 @@ Function UpdateMainMenu()
 					MenuStr = "The spiral is growing"
 				Case 22
 					MenuStr = Chr(34)+"Some kind of gestalt effect due to massive reality damage."+Chr(34)
+			    Case 23
+					MenuStr = "I Only wanted to have a good day."
+				Case 24
+					MenuStr = "RUN RUN RUN RUN RUN RUN RUN RUN."	
 			End Select
 		EndIf
 	EndIf
