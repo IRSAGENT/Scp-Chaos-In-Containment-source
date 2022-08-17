@@ -32,13 +32,13 @@ Global SelectedChapter% = CHAPTER1
 Const CHAPTER1=0, CHAPTER2=1, CHAPTER3=2, CHAPTER4=3, CHAPTER5=4, CHAPTER6=5, CHAPTER7=6
 
 Dim ChapterNames$(7)
-ChapterNames(CHAPTER1)="CH1-Arrival"
-ChapterNames(CHAPTER2)="CH2-The breach"
-ChapterNames(CHAPTER3)="CH3-Dangerous anomalies"
-ChapterNames(CHAPTER4)="CH4-The sewers"
-ChapterNames(CHAPTER5)="CH5-Heavy containment"
-ChapterNames(CHAPTER6)="CH6-Deeper down"
-ChapterNames(CHAPTER7)="CH7-The end is nigh"
+ChapterNames(CHAPTER1)="Arrival"
+ChapterNames(CHAPTER2)="The breach"
+ChapterNames(CHAPTER3)="Dangerous anomalies"
+ChapterNames(CHAPTER4)="The sewers"
+ChapterNames(CHAPTER5)="Heavy containment"
+ChapterNames(CHAPTER6)="Deeper down"
+ChapterNames(CHAPTER7)="The end is nigh"
 
 Global SelectedInputBox%
 
