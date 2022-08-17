@@ -113,7 +113,7 @@ Function UpdateMainMenu()
 				Case 15
 					MenuStr = "Stone does not care"
 				Case 16
-					MenuStr = "Hello robert..."
+					MenuStr = "Hello Robert..."
 				Case 17
 					MenuStr = "It controls the doors"
 				Case 18
@@ -127,7 +127,7 @@ Function UpdateMainMenu()
 			    Case 23
 					MenuStr = "I Only wanted to have a good day."
 				Case 24
-					MenuStr = "RUN RUN RUN RUN RUN RUN RUN RUN."	
+					MenuStr = "RUN. RUN. RUN. RUN. RUN. RUN."	
 			End Select
 		EndIf
 	EndIf
