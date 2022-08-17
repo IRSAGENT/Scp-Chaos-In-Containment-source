@@ -5491,6 +5491,11 @@ Function FillRoom(r.Rooms)
 			it = CreateItem("Dr L's Note", "paper", r\x - 160.0 * RoomScale, 32.0 * RoomScale, r\z - 353.0 * RoomScale)
 			EntityParent(it\collider, r\obj)
 			;[End Block]
+		Case "room2ez_breakroom"
+			;[Block]
+			r\Objects[0] = CreatePivot(r\obj)
+			PositionEntity(r\Objects[0], r\x + 512 * RoomScale, r\y + 192 * RoomScale, r\z - 256 * RoomScale, True)
+			;[End Block]
 		Case "dimension1499"
 			;[Block]
 			r\Levers[1] = LoadMesh_Strict("GFX\map\dimension1499\1499object0_cull.b3d",r\obj)

@@ -2676,6 +2676,9 @@ Function InitEvents()
 	
 	CreateEvent("room1archive", "room1archive", 0, 1.0)
 	
+	;Events for the mod start here
+	CreateEvent("room2ez_breakroom", "room2ez_breakroom", 0)
+	
 End Function
 
 Include "Source Code/UpdateEvents.bb"
