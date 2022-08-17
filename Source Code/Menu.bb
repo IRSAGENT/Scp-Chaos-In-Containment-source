@@ -45,7 +45,7 @@ Global SelectedInputBox%
 Global SavePath$ = "Saves\"
 Global SaveMSG$
 
-;nykyisen tallennuksen nimi ja samalla missä kansiossa tallennustiedosto sijaitsee saves-kansiossa
+;nykyisen tallennuksen nimi ja samalla missÃ¤ kansiossa tallennustiedosto sijaitsee saves-kansiossa
 Global CurrSave$
 
 Global SaveGameAmount%
@@ -113,7 +113,7 @@ Function UpdateMainMenu()
 				Case 15
 					MenuStr = "Stone does not care"
 				Case 16
-					MenuStr = "9341"
+					MenuStr = "Hello robert..."
 				Case 17
 					MenuStr = "It controls the doors"
 				Case 18
@@ -124,6 +124,10 @@ Function UpdateMainMenu()
 					MenuStr = "The spiral is growing"
 				Case 22
 					MenuStr = Chr(34)+"Some kind of gestalt effect due to massive reality damage."+Chr(34)
+			    Case 23
+					MenuStr = "I Only wanted to have a good day."
+				Case 24
+					MenuStr = "RUN RUN RUN RUN RUN RUN RUN RUN."	
 			End Select
 		EndIf
 	EndIf
@@ -2632,6 +2636,14 @@ Function Button%(x,y,width,height,txt$, disabled%=False)
 	Color 0,0,0
 	
 	If Pushed And MouseHit1 Then PlaySound_Strict ButtonSFX : Return True
+End Function
+
+
+Function RenderBar%(x%, y%, Width%, Height%, Value1#, Value2# = 100.0, R% = 100, G% = 100, B% = 100)
+    Color(255, 255, 255)
+    Rect(x, y, Width + (4 * MenuScale), Height, False)
+    Color(R, G, B)
+    Rect(x + (3 * MenuScale), y + (3 * MenuScale), Float((Width - (2 * MenuScale)) * (Value1 / Value2)), Height - (6 * MenuScale))
 End Function
 
 

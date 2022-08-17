@@ -4391,7 +4391,7 @@ Function MouseLook()
 		Local up# = (Sin(Shake) / (20.0+CrouchState*20.0))*0.6;, side# = Cos(Shake / 2.0) / 35.0		
 		Local roll# = Max(Min(Sin(Shake/2)*2.5*Min(Injuries+0.25,3.0),8.0),-8.0)
 		
-		;käännetään kameraa sivulle jos pelaaja on vammautunut
+		;kÃƒÂ¤ÃƒÂ¤nnetÃƒÂ¤ÃƒÂ¤n kameraa sivulle jos pelaaja on vammautunut
 		;RotateEntity Collider, EntityPitch(Collider), EntityYaw(Collider), Max(Min(up*30*Injuries,50),-50)
 		PositionEntity Camera, EntityX(Collider), EntityY(Collider), EntityZ(Collider)
 		RotateEntity Camera, 0, EntityYaw(Collider), roll*0.5
@@ -4468,7 +4468,7 @@ Function MouseLook()
 		
 	EndIf
 	
-	;pölyhiukkasia
+	;pÃƒÂ¶lyhiukkasia
 	If ParticleAmount=2
 		If Rand(35) = 1 Then
 			Local pvt% = CreatePivot()
@@ -4745,14 +4745,13 @@ Function DrawGUI()
 		
 		Local width% = 204, height% = 20
 		x% = 80
-		y% = GraphicHeight - 95
-		
-		Color 255, 255, 255	
-		Rect (x, y, width, height, False)
-		For i = 1 To Int(((width - 2) * (BlinkTimer / (BLINKFREQ))) / 10)
-			DrawImage(BlinkMeterIMG, x + 3 + 10 * (i - 1), y + 3)
-		Next	
-		Color 0, 0, 0
+		y% = GraphicHeight - 95		
+		If BlinkTimer < 150.0 Then
+  RenderBar(x, y, width, height, BlinkTimer, BLINKFREQ, 100, 0, 0)
+Else
+  RenderBar(x, y, width, height, BlinkTimer, BLINKFREQ)
+EndIf
+			Color 0, 0, 0
 		Rect(x - 50, y, 30, 30)
 		
 		If EyeIrritation > 0 Then
@@ -4764,14 +4763,12 @@ Function DrawGUI()
 		Rect(x - 50 - 1, y - 1, 30 + 2, 30 + 2, False)
 		
 		DrawImage BlinkIcon, x - 50, y
-		
 		y = GraphicHeight - 55
-		Color 255, 255, 255
-		Rect (x, y, width, height, False)
-		For i = 1 To Int(((width - 2) * (Stamina / 100.0)) / 10)
-			DrawImage(StaminaMeterIMG, x + 3 + 10 * (i - 1), y + 3)
-		Next	
-		
+	If Stamina <= 25.0 Then
+ 	 RenderBar(x, y, width, height, Stamina, 100.0, 50, 0, 0)
+	Else
+  	RenderBar(x, y, width, height, Stamina, 100.0, 50, 50, 50)
+	EndIf
 		Color 0, 0, 0
 		Rect(x - 50, y, 30, 30)
 		
@@ -5824,11 +5821,7 @@ Function DrawGUI()
 							height% = 20
 							x% = GraphicWidth / 2 - width / 2
 							y% = GraphicHeight / 2 + 80
-							Rect(x, y, width+4, height, False)
-							For  i% = 1 To Int((width - 2) * (SelectedItem\state / 100.0) / 10)
-								DrawImage(BlinkMeterIMG, x + 3 + 10 * (i - 1), y + 3)
-							Next
-							
+						RenderBar(x, y, width, height, SelectedItem\state)
 							SelectedItem\state = Min(SelectedItem\state+(FPSfactor/5.0),100)			
 							
 							If SelectedItem\state = 100 Then
@@ -6187,7 +6180,7 @@ Function DrawGUI()
 											DebugLog UserTrackName$(RadioState(0))
 										EndIf
 									EndIf
-								Case 1 ;hälytyskanava
+								Case 1 ;hÃƒÂ¤lytyskanava
 									DebugLog RadioState(1) 
 									
 									ResumeChannel(RadioCHN(1))
@@ -6403,7 +6396,7 @@ Function DrawGUI()
 											If RadioCHN(Int(SelectedItem\state2)) <> 0 Then PauseChannel(RadioCHN(Int(SelectedItem\state2)))
 										EndIf
 										SelectedItem\state2 = i-2
-										;jos nykyistä kanavaa ollaan soitettu, laitetaan jatketaan toistoa samasta kohdasta
+										;jos nykyistÃƒÂ¤ kanavaa ollaan soitettu, laitetaan jatketaan toistoa samasta kohdasta
 										If RadioCHN(SelectedItem\state2)<>0 Then ResumeChannel(RadioCHN(SelectedItem\state2))
 									EndIf
 								Next
@@ -6508,11 +6501,7 @@ Function DrawGUI()
 						height% = 20
 						x% = GraphicWidth / 2 - width / 2
 						y% = GraphicHeight / 2 + 80
-						Rect(x, y, width+4, height, False)
-						For  i% = 1 To Int((width - 2) * (SelectedItem\state / 100.0) / 10)
-							DrawImage(BlinkMeterIMG, x + 3 + 10 * (i - 1), y + 3)
-						Next
-						
+					RenderBar(x, y, width, height, SelectedItem\state)
 						SelectedItem\state = Min(SelectedItem\state+(FPSfactor/4.0),100)
 						
 						If SelectedItem\state=100 Then
@@ -6553,12 +6542,8 @@ Function DrawGUI()
 					height% = 20
 					x% = GraphicWidth / 2 - width / 2
 					y% = GraphicHeight / 2 + 80
-					Rect(x, y, width+4, height, False)
-					For  i% = 1 To Int((width - 2) * (SelectedItem\state / 100.0) / 10)
-						DrawImage(BlinkMeterIMG, x + 3 + 10 * (i - 1), y + 3)
-					Next
-					
-					SelectedItem\state = Min(SelectedItem\state+(FPSfactor/(2.0+(0.5*(SelectedItem\itemtemplate\tempname="finevest")))),100)
+			RenderBar(x, y, width, height, SelectedItem\state)				
+			SelectedItem\state = Min(SelectedItem\state+(FPSfactor/(2.0+(0.5*(SelectedItem\itemtemplate\tempname="finevest")))),100)
 					
 					If SelectedItem\state=100 Then
 						If WearingVest>0 Then
@@ -6839,11 +6824,7 @@ Function DrawGUI()
 					height% = 20
 					x% = GraphicWidth / 2 - width / 2
 					y% = GraphicHeight / 2 + 80
-					Rect(x, y, width+4, height, False)
-					For  i% = 1 To Int((width - 2) * (SelectedItem\state / 100.0) / 10)
-						DrawImage(BlinkMeterIMG, x + 3 + 10 * (i - 1), y + 3)
-					Next
-					
+				RenderBar(x, y, width, height, SelectedItem\state)		
 					SelectedItem\state = Min(SelectedItem\state+(FPSfactor),100)
 					
 					If SelectedItem\state=100 Then
@@ -7178,10 +7159,15 @@ Function DrawMenu()
 			AASetFont Font2
 			AAText(x, y-(122-45)*MenuScale, "PAUSED",False,True)
 			AASetFont Font1
+			ElseIf KillTimer >= 0 Then
+			AASetFont Font2
+			AAText(x, y-(111-35)*MenuScale, "OBJECTIVES",False,True)
+			AASetFont Font1
 		Else
 			AASetFont Font2
 			AAText(x, y-(122-45)*MenuScale, "YOU DIED",False,True)
 			AASetFont Font1
+			
 		End If		
 		
 		Local AchvXIMG% = (x + (22*MenuScale))
@@ -10316,7 +10302,7 @@ Function UpdateMTF%()
 	Local r.Rooms, n.NPCs
 	Local dist#, i%
 	
-	;mtf ei vielä spawnannut, spawnataan jos pelaaja menee tarpeeksi lähelle gate b:tä
+	;mtf ei vielÃƒÂ¤ spawnannut, spawnataan jos pelaaja menee tarpeeksi lÃƒÂ¤helle gate b:tÃƒÂ¤
 	If MTFtimer = 0 Then
 		If Rand(30)=1 And PlayerRoom\RoomTemplate\Name$ <> "dimension1499" Then
 			
@@ -10632,11 +10618,11 @@ Function CircleToLineSegIsect% (cx#, cy#, r#, l1x#, l1y#, l2x#, l2y#)
 	
 	;Palauttaa:
 	;  True (1) kun:
-	;      Ympyrä [keskipiste = (cx, cy): säde = r]
+	;      YmpyrÃƒÂ¤ [keskipiste = (cx, cy): sÃƒÂ¤de = r]
 	;      leikkaa janan, joka kulkee pisteiden (l1x, l1y) & (l2x, l2y) kaitta
 	;  False (0) muulloin
 	
-	;Ympyrän keskipisteen ja (ainakin toisen) janan päätepisteen etäisyys < r
+	;YmpyrÃƒÂ¤n keskipisteen ja (ainakin toisen) janan pÃƒÂ¤ÃƒÂ¤tepisteen etÃƒÂ¤isyys < r
 	;-> leikkaus
 	If Distance(cx, cy, l1x, l1y) <= r Then
 		Return True
@@ -10646,7 +10632,7 @@ Function CircleToLineSegIsect% (cx#, cy#, r#, l1x#, l1y#, l2x#, l2y#)
 		Return True
 	EndIf	
 	
-	;Vektorit (janan vektori ja vektorit janan päätepisteistä ympyrän keskipisteeseen)
+	;Vektorit (janan vektori ja vektorit janan pÃƒÂ¤ÃƒÂ¤tepisteistÃƒÂ¤ ympyrÃƒÂ¤n keskipisteeseen)
 	Local SegVecX# = l2x - l1x
 	Local SegVecY# = l2y - l1y
 	
@@ -10669,21 +10655,21 @@ Function CircleToLineSegIsect% (cx#, cy#, r#, l1x#, l1y#, l2x#, l2y#)
 		Return False
 	EndIf
 	
-	;Janan päätepisteiden kautta kulkevan suoran ;yhtälö; (ax + by + c = 0)
+	;Janan pÃƒÂ¤ÃƒÂ¤tepisteiden kautta kulkevan suoran ;yhtÃƒÂ¤lÃƒÂ¶; (ax + by + c = 0)
 	Local a# = (l2y - l1y) / (l2x - l1x)
 	Local b# = -1
 	Local c# = -(l2y - l1y) / (l2x - l1x) * l1x + l1y
 	
-	;Ympyrän keskipisteen etäisyys suorasta
+	;YmpyrÃƒÂ¤n keskipisteen etÃƒÂ¤isyys suorasta
 	Local d# = Abs(a * cx + b * cy + c) / Sqr(a * a + b * b)
 	
-	;Ympyrä on liian kaukana
+	;YmpyrÃƒÂ¤ on liian kaukana
 	;-> ei leikkausta
 	If d > r Then Return False
 	
 	;Local kateetin_pituus# = Cos(angle) * hyp
 	
-	;Jos päästään tänne saakka, ympyrä ja jana leikkaavat (tai ovat sisäkkäin)
+	;Jos pÃƒÂ¤ÃƒÂ¤stÃƒÂ¤ÃƒÂ¤n tÃƒÂ¤nne saakka, ympyrÃƒÂ¤ ja jana leikkaavat (tai ovat sisÃƒÂ¤kkÃƒÂ¤in)
 	Return True
 End Function
 
