@@ -2639,6 +2639,14 @@ Function Button%(x,y,width,height,txt$, disabled%=False)
 End Function
 
 
+Function RenderBar%(x%, y%, Width%, Height%, Value1#, Value2# = 100.0, R% = 100, G% = 100, B% = 100)
+    Color(255, 255, 255)
+    Rect(x, y, Width + (4 * MenuScale), Height, False)
+    Color(R, G, B)
+    Rect(x + (3 * MenuScale), y + (3 * MenuScale), Float((Width - (2 * MenuScale)) * (Value1 / Value2)), Height - (6 * MenuScale))
+End Function
+
+
 
 
 
