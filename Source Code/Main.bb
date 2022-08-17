@@ -5818,7 +5818,7 @@ EndIf
 							height% = 20
 							x% = GraphicWidth / 2 - width / 2
 							y% = GraphicHeight / 2 + 80
-						RenderBar(x, y, width, height, SelectedItem\state)t
+						RenderBar(x, y, width, height, SelectedItem\state)
 							SelectedItem\state = Min(SelectedItem\state+(FPSfactor/5.0),100)			
 							
 							If SelectedItem\state = 100 Then
