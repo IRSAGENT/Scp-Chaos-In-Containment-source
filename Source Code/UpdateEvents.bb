@@ -19,13 +19,13 @@ Function UpdateEvents()
 			;Events for the mod
 			Case "room2ez_breakroom"
 				If ChannelPlaying(e\SoundCHN) Then
-					UpdateSoundOrigin(e\SoundCHN, Camera, e\room\Objects[0], 5)
+					UpdateSoundOrigin(e\SoundCHN, Camera, e\room\Objects[0], 8)
 				EndIf
 				If PlayerRoom = e\room Then
 					If EntityDistance(e\room\Objects[0], Collider) < 0.75 And (Not ChannelPlaying(e\SoundCHN)) Then
 						DrawHandIcon = True
 						If MouseHit1 Then
-							e\SoundCHN = PlaySound2(LoadTempSound("SFX\recordplaying.ogg"), Camera, e\room\Objects[0], 5)
+							e\SoundCHN = PlaySound2(LoadTempSound("SFX\recordplaying.ogg"), Camera, e\room\Objects[0], 8)
 						EndIf
 					EndIf
 				EndIf

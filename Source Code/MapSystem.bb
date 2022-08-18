@@ -5494,7 +5494,7 @@ Function FillRoom(r.Rooms)
 		Case "room2ez_breakroom"
 			;[Block]
 			r\Objects[0] = CreatePivot(r\obj)
-			PositionEntity(r\Objects[0], r\x + 512 * RoomScale, r\y + 192 * RoomScale, r\z - 256 * RoomScale, True)
+			PositionEntity(r\Objects[0], r\x + 512 * RoomScale, r\y + 156 * RoomScale, r\z - 256 * RoomScale, True)
 			;[End Block]
 		Case "dimension1499"
 			;[Block]
