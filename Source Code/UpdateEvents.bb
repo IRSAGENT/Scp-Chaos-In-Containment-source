@@ -80,16 +80,16 @@ Function UpdateEvents()
 						AmbientLight Brightness, Brightness, Brightness
 						CameraFogRange(Camera, CameraFogNear, CameraFogFar)
 						CameraFogMode(Camera, 1)
-						If SelectedDifficulty\saveType = SAVEANYWHERE Then
-							Msg = "Press "+KeyName(KEY_SAVE)+" to save."
-							MsgTimer = 70*4
-							;SetSaveMSG("Press "+KeyName(KEY_SAVE)+" to save.")
-						ElseIf SelectedDifficulty\saveType = SAVEONSCREENS Then
-							Msg = "Saving is only permitted on clickable monitors scattered throughout the facility."
-							MsgTimer = 70 * 8
-							;SetSaveMSG("Saving is only permitted on clickable monitors scattered throughout the facility.")
-						EndIf
-						
+;						If SelectedDifficulty\saveType = SAVEANYWHERE Then
+;							Msg = "Press "+KeyName(KEY_SAVE)+" to save."
+;							MsgTimer = 70*4
+;							;SetSaveMSG("Press "+KeyName(KEY_SAVE)+" to save.")
+;						ElseIf SelectedDifficulty\saveType = SAVEONSCREENS Then
+;							Msg = "Saving is only permitted on clickable monitors scattered throughout the facility."
+;							MsgTimer = 70 * 8
+;							;SetSaveMSG("Saving is only permitted on clickable monitors scattered throughout the facility.")
+;						EndIf
+; message disabled due to chapter announcement not playing						
 						Curr173\Idle=False
 						
 						While e\room\RoomDoors[1]\openstate < 180

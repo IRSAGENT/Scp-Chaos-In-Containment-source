@@ -8451,6 +8451,8 @@ Function InitNewGame()
 			EntityType (it\collider, HIT_ITEM)
 			EntityParent(it\collider, 0)
 			ItemAmount = ItemAmount + 1
+			Msg = "Chapter " + (SelectedChapter% + 1) + " - " + ChapterNames$(SelectedChapter%)
+			MsgTimer = 70 * 8
 		ElseIf (r\RoomTemplate\Name = "173" And IntroEnabled) Then
 			PositionEntity (Collider, EntityX(r\obj), 1.0, EntityZ(r\obj))
 			PlayerRoom = r
