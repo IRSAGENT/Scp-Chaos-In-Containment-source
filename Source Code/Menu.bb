@@ -38,7 +38,7 @@ ChapterNames(CHAPTER3)="Dangerous Anomalies"
 ChapterNames(CHAPTER4)="Sewer Interest"
 ChapterNames(CHAPTER5)="Heavy Containment"
 ChapterNames(CHAPTER6)="Deeper Down"
-ChapterNames(CHAPTER7)="Near The End"
+ChapterNames(CHAPTER7)="The End is nigh"
 
 Global SelectedInputBox%
 
