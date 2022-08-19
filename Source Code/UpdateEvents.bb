@@ -2581,9 +2581,10 @@ Function UpdateEvents()
 						EndIf
 					EndIf		
 				EndIf
-				
+								
 				If e\EventState = 0 Then
-					CreateNPC(NPCtype066, EntityX(e\room\obj), 0.5, EntityZ(e\room\obj))
+; 066 temporarily disabled 'til it's chamber gets made
+;					CreateNPC(NPCtype066, EntityX(e\room\obj), 0.5, EntityZ(e\room\obj))
 					e\EventState = 1
 				EndIf
 				;[End Block]
