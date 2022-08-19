@@ -7448,6 +7448,7 @@ Function CreateMap()
 	SetRoom("medibay", ROOM2, min_pos+Floor(0.7*Float(Room2Amount[2])),min_pos,max_pos)
 	SetRoom("room2poffices2", ROOM2, min_pos+Floor(0.8*Room2Amount[2]),min_pos,max_pos)
 	SetRoom("room2offices2", ROOM2, min_pos+Floor(0.9*Float(Room2Amount[2])),min_pos,max_pos)
+	SetRoom("room2ez_breakroom", ROOM2, min_pos+Floor(0.25*Float(Room2Amount[2])),min_pos,max_pos)
 	
 	MapRoom(ROOM2C, Room2CAmount[0]+Room2CAmount[1]) = "room2ccont"	
 	MapRoom(ROOM2C, Room2CAmount[0]+Room2CAmount[1]+1) = "lockroom2"		
