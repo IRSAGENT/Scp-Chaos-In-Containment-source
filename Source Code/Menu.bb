@@ -33,12 +33,12 @@ Const CHAPTER1=0, CHAPTER2=1, CHAPTER3=2, CHAPTER4=3, CHAPTER5=4, CHAPTER6=5, CH
 
 Dim ChapterNames$(7)
 ChapterNames(CHAPTER1)="Arrival"
-ChapterNames(CHAPTER2)="The breach"
-ChapterNames(CHAPTER3)="Dangerous anomalies"
-ChapterNames(CHAPTER4)="The sewers"
-ChapterNames(CHAPTER5)="Heavy containment"
-ChapterNames(CHAPTER6)="Deeper down"
-ChapterNames(CHAPTER7)="The end is nigh"
+ChapterNames(CHAPTER2)="The Breach"
+ChapterNames(CHAPTER3)="Dangerous Anomalies"
+ChapterNames(CHAPTER4)="The Sewers"
+ChapterNames(CHAPTER5)="Heavy Containment"
+ChapterNames(CHAPTER6)="Deeper Down"
+ChapterNames(CHAPTER7)="The End is nigh"
 
 Global SelectedInputBox%
 
