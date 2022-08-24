@@ -2676,9 +2676,6 @@ Function InitEvents()
 	
 	CreateEvent("room1archive", "room1archive", 0, 1.0)
 	
-	;Events for the mod start here
-	CreateEvent("room2ez_breakroom", "room2ez_breakroom", 0)
-	
 End Function
 
 Include "Source Code/UpdateEvents.bb"
@@ -4391,7 +4388,7 @@ Function MouseLook()
 		Local up# = (Sin(Shake) / (20.0+CrouchState*20.0))*0.6;, side# = Cos(Shake / 2.0) / 35.0		
 		Local roll# = Max(Min(Sin(Shake/2)*2.5*Min(Injuries+0.25,3.0),8.0),-8.0)
 		
-		;kÃƒÂ¤ÃƒÂ¤nnetÃƒÂ¤ÃƒÂ¤n kameraa sivulle jos pelaaja on vammautunut
+		;kÃ¤Ã¤nnetÃ¤Ã¤n kameraa sivulle jos pelaaja on vammautunut
 		;RotateEntity Collider, EntityPitch(Collider), EntityYaw(Collider), Max(Min(up*30*Injuries,50),-50)
 		PositionEntity Camera, EntityX(Collider), EntityY(Collider), EntityZ(Collider)
 		RotateEntity Camera, 0, EntityYaw(Collider), roll*0.5
@@ -4468,7 +4465,7 @@ Function MouseLook()
 		
 	EndIf
 	
-	;pÃƒÂ¶lyhiukkasia
+	;pÃ¶lyhiukkasia
 	If ParticleAmount=2
 		If Rand(35) = 1 Then
 			Local pvt% = CreatePivot()
@@ -4763,7 +4760,7 @@ EndIf
 		Rect(x - 50 - 1, y - 1, 30 + 2, 30 + 2, False)
 		
 		DrawImage BlinkIcon, x - 50, y
-		y = GraphicHeight - 55
+		
 	If Stamina <= 25.0 Then
  	 RenderBar(x, y, width, height, Stamina, 100.0, 50, 0, 0)
 	Else
@@ -6180,7 +6177,7 @@ EndIf
 											DebugLog UserTrackName$(RadioState(0))
 										EndIf
 									EndIf
-								Case 1 ;hÃƒÂ¤lytyskanava
+								Case 1 ;hÃ¤lytyskanava
 									DebugLog RadioState(1) 
 									
 									ResumeChannel(RadioCHN(1))
@@ -6396,7 +6393,7 @@ EndIf
 											If RadioCHN(Int(SelectedItem\state2)) <> 0 Then PauseChannel(RadioCHN(Int(SelectedItem\state2)))
 										EndIf
 										SelectedItem\state2 = i-2
-										;jos nykyistÃƒÂ¤ kanavaa ollaan soitettu, laitetaan jatketaan toistoa samasta kohdasta
+										;jos nykyistÃ¤ kanavaa ollaan soitettu, laitetaan jatketaan toistoa samasta kohdasta
 										If RadioCHN(SelectedItem\state2)<>0 Then ResumeChannel(RadioCHN(SelectedItem\state2))
 									EndIf
 								Next
@@ -6500,9 +6497,16 @@ EndIf
 						width% = 300
 						height% = 20
 						x% = GraphicWidth / 2 - width / 2
-						y% = GraphicHeight / 2 + 80
+						y = GraphicHeight - 135
 					RenderBar(x, y, width, height, SelectedItem\state)
-						SelectedItem\state = Min(SelectedItem\state+(FPSfactor/4.0),100)
+						SelectedItem\state = Min(SelectedItem\state+(FPSfactor/4.0),100)					
+						
+						width% = 300
+						height% = 20
+						x% = GraphicWidth / 2 - width / 2
+						y = GraphicHeight - 135
+					RenderBar(x, y, width, height, SelectedItem\state)
+						SelectedItem\state = Min(SelectedItem\state+(FPSfactor/4.0),100)			
 						
 						If SelectedItem\state=100 Then
 							If WearingHazmat>0 Then
@@ -8451,8 +8455,6 @@ Function InitNewGame()
 			EntityType (it\collider, HIT_ITEM)
 			EntityParent(it\collider, 0)
 			ItemAmount = ItemAmount + 1
-			Msg = "Chapter " + (SelectedChapter% + 1) + " - " + ChapterNames$(SelectedChapter%)
-			MsgTimer = 70 * 8
 		ElseIf (r\RoomTemplate\Name = "173" And IntroEnabled) Then
 			PositionEntity (Collider, EntityX(r\obj), 1.0, EntityZ(r\obj))
 			PlayerRoom = r
@@ -10304,7 +10306,7 @@ Function UpdateMTF%()
 	Local r.Rooms, n.NPCs
 	Local dist#, i%
 	
-	;mtf ei vielÃƒÂ¤ spawnannut, spawnataan jos pelaaja menee tarpeeksi lÃƒÂ¤helle gate b:tÃƒÂ¤
+	;mtf ei vielÃ¤ spawnannut, spawnataan jos pelaaja menee tarpeeksi lÃ¤helle gate b:tÃ¤
 	If MTFtimer = 0 Then
 		If Rand(30)=1 And PlayerRoom\RoomTemplate\Name$ <> "dimension1499" Then
 			
@@ -10620,11 +10622,11 @@ Function CircleToLineSegIsect% (cx#, cy#, r#, l1x#, l1y#, l2x#, l2y#)
 	
 	;Palauttaa:
 	;  True (1) kun:
-	;      YmpyrÃƒÂ¤ [keskipiste = (cx, cy): sÃƒÂ¤de = r]
+	;      YmpyrÃ¤ [keskipiste = (cx, cy): sÃ¤de = r]
 	;      leikkaa janan, joka kulkee pisteiden (l1x, l1y) & (l2x, l2y) kaitta
 	;  False (0) muulloin
 	
-	;YmpyrÃƒÂ¤n keskipisteen ja (ainakin toisen) janan pÃƒÂ¤ÃƒÂ¤tepisteen etÃƒÂ¤isyys < r
+	;YmpyrÃ¤n keskipisteen ja (ainakin toisen) janan pÃ¤Ã¤tepisteen etÃ¤isyys < r
 	;-> leikkaus
 	If Distance(cx, cy, l1x, l1y) <= r Then
 		Return True
@@ -10634,7 +10636,7 @@ Function CircleToLineSegIsect% (cx#, cy#, r#, l1x#, l1y#, l2x#, l2y#)
 		Return True
 	EndIf	
 	
-	;Vektorit (janan vektori ja vektorit janan pÃƒÂ¤ÃƒÂ¤tepisteistÃƒÂ¤ ympyrÃƒÂ¤n keskipisteeseen)
+	;Vektorit (janan vektori ja vektorit janan pÃ¤Ã¤tepisteistÃ¤ ympyrÃ¤n keskipisteeseen)
 	Local SegVecX# = l2x - l1x
 	Local SegVecY# = l2y - l1y
 	
@@ -10657,21 +10659,21 @@ Function CircleToLineSegIsect% (cx#, cy#, r#, l1x#, l1y#, l2x#, l2y#)
 		Return False
 	EndIf
 	
-	;Janan pÃƒÂ¤ÃƒÂ¤tepisteiden kautta kulkevan suoran ;yhtÃƒÂ¤lÃƒÂ¶; (ax + by + c = 0)
+	;Janan pÃ¤Ã¤tepisteiden kautta kulkevan suoran ;yhtÃ¤lÃ¶; (ax + by + c = 0)
 	Local a# = (l2y - l1y) / (l2x - l1x)
 	Local b# = -1
 	Local c# = -(l2y - l1y) / (l2x - l1x) * l1x + l1y
 	
-	;YmpyrÃƒÂ¤n keskipisteen etÃƒÂ¤isyys suorasta
+	;YmpyrÃ¤n keskipisteen etÃ¤isyys suorasta
 	Local d# = Abs(a * cx + b * cy + c) / Sqr(a * a + b * b)
 	
-	;YmpyrÃƒÂ¤ on liian kaukana
+	;YmpyrÃ¤ on liian kaukana
 	;-> ei leikkausta
 	If d > r Then Return False
 	
 	;Local kateetin_pituus# = Cos(angle) * hyp
 	
-	;Jos pÃƒÂ¤ÃƒÂ¤stÃƒÂ¤ÃƒÂ¤n tÃƒÂ¤nne saakka, ympyrÃƒÂ¤ ja jana leikkaavat (tai ovat sisÃƒÂ¤kkÃƒÂ¤in)
+	;Jos pÃ¤Ã¤stÃ¤Ã¤n tÃ¤nne saakka, ympyrÃ¤ ja jana leikkaavat (tai ovat sisÃ¤kkÃ¤in)
 	Return True
 End Function
 
