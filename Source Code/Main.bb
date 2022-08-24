@@ -4742,7 +4742,7 @@ Function DrawGUI()
 		
 		Local width% = 204, height% = 20
 		x% = 80
-		y% = GraphicHeight - 95		
+		y = GraphicHeight - 55	
 		If BlinkTimer < 150.0 Then
   RenderBar(x, y, width, height, BlinkTimer, BLINKFREQ, 100, 0, 0)
 Else
